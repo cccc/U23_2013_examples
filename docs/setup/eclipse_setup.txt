@@ -1,0 +1,43 @@
+Dependencies:
+	stlink (https://github.com/texane/stlink)
+	gcc-arm-embedded (https://launchpad.net/gcc-arm-embedded)
+	openocd
+
+	All utilities in PATH
+
+Eclipse Plugins:
+	CDT (Update site: http://download.eclipse.org/tools/cdt/releases/juno)
+	GNUARM (Update site: http://gnuarmeclipse.sourceforge.net/updates)
+
+	Tested with Eclipse 4.2.2 (Juno)
+
+STM32 Libraries:
+	CMSIS, DSP and Peripheral library: http://www.st.com/web/catalog/tools/FM147/CL1794/SC961/SS1743/PF257901
+	libopencm3: http://www.libopencm3.org/wiki/Main_Page
+
+Basic project setup:
+	1. Start eclipse
+	2. Create a new C-Project
+	3. Select "ARM Cross Target Application" with toolchain "ARM Linux GCC (Summon)" and give it a name
+	4. Finish
+	5. Project is created. If you are asked if you want to switch to the C/C++ perspective you can answer with "Yes"
+	6. Now you start copying a bunch of files to get the basic project structure. Just import the 01_blink project instead of creating a new one and modify that.
+
+Debugging (should work with st-util instead of OpenOCD, too):
+	1. Install "C/C++ GDB Hardware Debugging" plugin
+	2. Install openocd
+	3. Create new "GDB Hardware Debugging" debug configuration in eclipse project
+	4. Tab "Debugger":
+		- Change GDB command to: "arm-none-eabi-gdb"
+		- Change port number to 3333
+	5. Tab "Startup":
+		- Enter the following in "Run commands":
+			monitor reset init
+			c
+	6. Tab "Common":
+		- Tick at "Debug" in the "Display in favorites menu" box
+	7. Click "Apply" -> "Close"
+	8. Set a breakpoint somewhere
+	9. Launch openocd like so:
+		openocd -f interface/stlink-v2.cfg -f target/stm32f4x_stlink.cfg
+	10. Choose the created debug configuration from the debug drop-down menu in eclipse
