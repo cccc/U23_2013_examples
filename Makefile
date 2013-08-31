@@ -8,6 +8,7 @@ all:
 	$(call cmd_msg,NOTICE,Build completed in $$(($$(date +%s)-$(STARTTIME))) seconds)
 
 upload: upload-$(FIRMWARE)
+upload-fast: upload-fast-$(FIRMWARE)
 upload-gdb: upload-gdb-$(FIRMWARE)
 debug-gdb: debug-gdb-$(FIRMWARE) 
 
