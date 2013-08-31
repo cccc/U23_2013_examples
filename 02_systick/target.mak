@@ -1,5 +1,5 @@
 # Target file name.
-TARGET = 01_blink
+TARGET = 02_systick
 
 # List C source files here.
 CCSOURCES = main.c \
@@ -7,7 +7,8 @@ CCSOURCES = main.c \
             lib/CMSIS/DeviceSupport/ST/STM32F4xx/system_stm32f4xx.c \
             lib/CMSIS/DeviceSupport/ST/STM32F4xx/startup/startup_stm32f4xx.c \
             lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c \
-            lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c
+            lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c \
+            lib/STM32F4xx_StdPeriph_Driver/src/misc.c
 
 # List C++ source files here.
 CXXSOURCES =
