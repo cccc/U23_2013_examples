@@ -31,7 +31,7 @@ Debugging (should work with st-util instead of OpenOCD, too):
 		- Change GDB command to: "arm-none-eabi-gdb"
 		- Change port number to 3333
 	5. Tab "Startup":
-		- Enter the following in "Run commands":
+		- Enter the following in "Initialization Commands":
 			monitor reset init
 			c
 	6. Tab "Common":
