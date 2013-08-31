@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 while true; do
     make upload-fast 2&>1 > /dev/null
     openocd -f interface/stlink-v2.cfg -f target/stm32f4x_stlink.cfg 2&>1 > /dev/null &
