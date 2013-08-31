@@ -1,6 +1,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "system_stm32f4xx.h"
+
 extern uint32_t _stack;
 extern uint32_t _etext;
 extern uint32_t _data;
