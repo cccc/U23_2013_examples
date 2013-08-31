@@ -1,7 +1,6 @@
 AR      := $(TOOLCHAIN_TARGET)-ar
 AS      := $(TOOLCHAIN_TARGET)-as
 CC      := $(TOOLCHAIN_TARGET)-gcc
-DC      := $(TOOLCHAIN_TARGET)-gdc
 CXX     := $(TOOLCHAIN_TARGET)-g++
 LD      := $(TOOLCHAIN_TARGET)-ld
 NM      := $(TOOLCHAIN_TARGET)-nm
@@ -10,4 +9,4 @@ OBJDUMP := $(TOOLCHAIN_TARGET)-objdump
 RANLIB  := $(TOOLCHAIN_TARGET)-ranlib
 READELF := $(TOOLCHAIN_TARGET)-readelf
 STRIP   := $(TOOLCHAIN_TARGET)-strip
-GDB	    := $(TOOLCHAIN_TARGET)-gdb
+GDB     := $(TOOLCHAIN_TARGET)-gdb
