@@ -23,7 +23,8 @@ Basic project setup:
 	5. Project is created. If you are asked if you want to switch to the C/C++ perspective you can answer with "Yes"
 	6. Now you start copying a bunch of files to get the basic project structure. Just import the 01_blink project instead of creating a new one and modify that.
 
-Debugging (should work with st-util instead of OpenOCD, too):
+Debugging (setup once):
+    (should work with st-util instead of OpenOCD, too):
 	1. Install "C/C++ GDB Hardware Debugging" plugin
 	2. Install openocd
 	3. Create new "GDB Hardware Debugging" debug configuration in eclipse project
@@ -33,12 +34,12 @@ Debugging (should work with st-util instead of OpenOCD, too):
 	5. Tab "Startup":
 		- Enter the following in "Initialization Commands":
 			monitor reset init
-			c
 	6. Tab "Common":
 		- Tick at "Debug" in the "Display in favorites menu" box
 	7. Click "Apply" -> "Close"
-	8. Set a breakpoint somewhere
-	9. Launch openocd like so:
-		openocd -f interface/stlink-v2.cfg -f target/stm32f4x_stlink.cfg
-	10. Choose the created debug configuration from the debug drop-down menu in eclipse
-    11. Press the reset (black) Button on the STM32 Board
+
+Debugging (every time):
+	1. Set a breakpoint somewhere
+	2. Launch ./debug.sh and wait till connection is established
+	3. Choose the created debug configuration from the debug drop-down menu in eclipse
+    4. The STM32 should now be halted. Press the reset (black) Button on the STM32 Board to start debugging
