@@ -41,4 +41,4 @@ Debugging (should work with st-util instead of OpenOCD, too):
 	9. Launch openocd like so:
 		openocd -f interface/stlink-v2.cfg -f target/stm32f4x_stlink.cfg
 	10. Choose the created debug configuration from the debug drop-down menu in eclipse
-    11. You may have to right-click the thread in the Debug view and select Restart for brakepoints to work
+    11. Press the reset (black) Button on the STM32 Board
