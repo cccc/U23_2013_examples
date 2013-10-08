@@ -12,7 +12,7 @@ upload-fast: upload-fast-$(FIRMWARE)
 upload-gdb: upload-gdb-$(FIRMWARE)
 debug-gdb: debug-gdb-$(FIRMWARE) 
 
-SUBDIRS = bare_metal
+SUBDIRS = bare_metal u23_lib
 SELF_DIR = $(ROOT)/
 include $(abspath $(addprefix $(SELF_DIR),$(addsuffix /target.mak,$(SUBDIRS))))
 
