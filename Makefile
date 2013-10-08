@@ -12,7 +12,7 @@ upload-fast: upload-fast-$(FIRMWARE)
 upload-gdb: upload-gdb-$(FIRMWARE)
 debug-gdb: debug-gdb-$(FIRMWARE) 
 
-SUBDIRS = 01_blink 02_systick 03_pwm
+SUBDIRS = bare_metal
 SELF_DIR = $(ROOT)/
 include $(abspath $(addprefix $(SELF_DIR),$(addsuffix /target.mak,$(SUBDIRS))))
 
