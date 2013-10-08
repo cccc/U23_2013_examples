@@ -10,9 +10,13 @@ all:
 upload: upload-$(FIRMWARE)
 upload-fast: upload-fast-$(FIRMWARE)
 upload-gdb: upload-gdb-$(FIRMWARE)
-debug-gdb: debug-gdb-$(FIRMWARE) 
+debug-gdb: debug-gdb-$(FIRMWARE)
 
-SUBDIRS = bare_metal u23_lib
+trace: stlink-trace
+	$(call cmd_msg,NOTICE,Starting stlink-trace)
+	$Q$(ROOT)/tools/stlink-trace/obj/stlink-trace.elf
+
+SUBDIRS = bare_metal u23_lib tools
 SELF_DIR = $(ROOT)/
 include $(abspath $(addprefix $(SELF_DIR),$(addsuffix /target.mak,$(SUBDIRS))))
 

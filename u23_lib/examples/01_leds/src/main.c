@@ -1,5 +1,7 @@
 #include <System.h>
 
+#include <stdio.h>
+
 int main()
 {
 	// Do some basic initialization tasks
@@ -7,6 +9,8 @@ int main()
 
 	// Initialize pins for LEDs
 	InitializeLEDs();
+
+	EnableDebugOutput(DEBUG_ITM);
 
 	while (1)
 	{
@@ -21,5 +25,7 @@ int main()
 
 		SetLEDs(8);
 		Delay(100);
+
+		iprintf("Done\r\n");
 	}
 }

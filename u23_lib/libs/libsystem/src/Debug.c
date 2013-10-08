@@ -1,20 +1,25 @@
 #include <Debug.h>
-#include <USART.h>
+#include <System.h>
 
 #include <stdio.h>
 
-uint32_t DebugEnabled = 0;
+DebugDevice CurrentDebugDevice = DEBUG_NONE;
 
 void EnableDebugOutput(DebugDevice device)
 {
-	MyUSART_Init();
-	setvbuf(stdout, 0, _IONBF, 0);
+	if(device == DEBUG_USART)
+	{
+		MyUSART_Init();
+		setvbuf(stdout, 0, _IONBF, 0);
+	}
 
-	DebugEnabled = 1;
+	CurrentDebugDevice = device;
 }
 
 void DebugPrintChar(char c)
 {
-	if(DebugEnabled)
+	if(CurrentDebugDevice == DEBUG_USART)
 		USART_SendChar(c);
+	else if(CurrentDebugDevice == DEBUG_ITM)
+		ITM_SendChar(c);
 }

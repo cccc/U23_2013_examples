@@ -4,11 +4,13 @@
 #include <stdint.h>
 
 typedef enum {
+	DEBUG_NONE,
 	DEBUG_USART,
+	DEBUG_ITM
 //	DEBUG_USB
 } DebugDevice;
 
-extern uint32_t DebugEnabled;
+extern DebugDevice CurrentDebugDevice;
 
 void EnableDebugOutput(DebugDevice device);
 void DebugPrintChar(char c);
