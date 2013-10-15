@@ -8,6 +8,7 @@ CCSOURCES = NewlibSyscalls.c \
 			USART.c \
 			Random.c \
 			Audio.c \
+			Synth.c \
 			LED.c \
 			Accelerometer.c \
 			Init.c
