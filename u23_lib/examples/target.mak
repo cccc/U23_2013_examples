@@ -1,4 +1,4 @@
-SUBDIRS := 01_leds 02_rawgpio
+SUBDIRS := 01_leds 02_rawgpio 03_gpioinput
 
 SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 include $(abspath $(addprefix $(SELF_DIR),$(addsuffix /target.mak,$(SUBDIRS))))
