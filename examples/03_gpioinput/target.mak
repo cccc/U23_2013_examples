@@ -1,5 +1,5 @@
 # Target file name.
-TARGET = 02_rawgpio
+TARGET = 03_gpioinput
 
 # List C source files here.
 CCSOURCES = main.c
@@ -22,13 +22,13 @@ ASFLAGS =
 
 # Linker flags
 LDFLAGS  = -mthumb -mcpu=cortex-m4 -mfix-cortex-m3-ldrd -mfloat-abi=hard -mfpu=fpv4-sp-d16 -nostartfiles
-LDFLAGS += -Wl,-T,$(ROOT)/u23_lib/libs/libCMSIS/DeviceSupport/ST/STM32F4xx/startup/stm32f4xx_flash.ld,-Map,$(SELF_DIR)/$(TARGET)/$(TARGET).map -Wl,--gc-sections
+LDFLAGS += -Wl,-T,$(ROOT)/libs/libCMSIS/DeviceSupport/ST/STM32F4xx/startup/stm32f4xx_flash.ld,-Map,$(SELF_DIR)/$(TARGET)/$(TARGET).map -Wl,--gc-sections
 
 # Additional include paths to consider
-INCLUDES = $(ROOT)/u23_lib/libs/libsystem/inc \
-           $(ROOT)/u23_lib/libs/libstm32f4xx/inc \
-           $(ROOT)/u23_lib/libs/libCMSIS/CoreSupport \
-           $(ROOT)/u23_lib/libs/libCMSIS/DeviceSupport/ST/STM32F4xx
+INCLUDES = $(ROOT)/libs/libsystem/inc \
+           $(ROOT)/libs/libstm32f4xx/inc \
+           $(ROOT)/libs/libCMSIS/CoreSupport \
+           $(ROOT)/libs/libCMSIS/DeviceSupport/ST/STM32F4xx
 
 # Additional local static libs to link against
 LIBS = $(BINARY-libCMSIS) $(BINARY-libstm32f4xx) $(BINARY-libsystem)
