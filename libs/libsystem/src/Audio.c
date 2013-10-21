@@ -22,7 +22,7 @@ static volatile int NextBufferLength;
 static volatile bool DMARunning;
 
 static volatile int BufferNumber;
-__attribute__ ((section (".sram.bss"))) static int16_t (*SampleBuffer)[256];
+static int16_t SampleBuffer[2][256] __attribute__((section (".sram.bss")));
 
 void InitializeAudio(uint32_t freq)
 {
