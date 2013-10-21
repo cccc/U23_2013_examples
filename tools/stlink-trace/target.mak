@@ -25,6 +25,10 @@ LDFLAGS = `pkg-config --libs libusb-1.0`
 # Additional include paths to consider
 INCLUDES = $(ROOT)/tools/stlink-trace
 
+# Additional local static libs to link against
+LIBS =
+#LIBS = $(BINARY-libstartup) $(BINARY-libstm32f4xx)	#example on how to link against static libs
+
 # Folder for object files
 OBJDIR = obj
 
