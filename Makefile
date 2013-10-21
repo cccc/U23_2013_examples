@@ -16,7 +16,7 @@ trace: stlink-trace
 	$(call cmd_msg,NOTICE,Starting stlink-trace)
 	$Q$(ROOT)/tools/stlink-trace/obj/stlink-trace.elf
 
-SUBDIRS = bare_metal libs examples tools
+SUBDIRS = bare_metal libs examples apps tools
 SELF_DIR = $(ROOT)/
 include $(abspath $(addprefix $(SELF_DIR),$(addsuffix /target.mak,$(SUBDIRS))))
 
