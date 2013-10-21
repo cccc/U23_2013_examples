@@ -4,7 +4,8 @@ SUBDIRS :=  01_leds \
 			04_gpiointerrupt \
 			05_ledpwm \
 			06_servo \
-			07_accelerometer
+			07_accelerometer \
+			08_synth
 
 SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 include $(abspath $(addprefix $(SELF_DIR),$(addsuffix /target.mak,$(SUBDIRS))))
