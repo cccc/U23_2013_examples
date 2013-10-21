@@ -24,9 +24,6 @@ OBJECTS := $(ASOURCES:%.S=%.o)
 OBJECTS += $(CCSOURCES:%.c=%.o)
 OBJECTS += $(CXXSOURCES:%.cpp=%.o)
 
-# Build lib search directories
-LIBS := $(LIBS)
-
 # Build dependency list of libraries
 LIBDEPS := $(LIBS)
 

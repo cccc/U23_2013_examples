@@ -1,72 +1,74 @@
 #current directory
 #FIXME: this looks strange somehow...
-CURDIR-$(TARGET) := $(SELF_DIR)$(TARGET)
+CURDIR := $(SELF_DIR)$(TARGET)
 
 # Variable mangling
-OBJDIR-$(TARGET) := $(addprefix $(CURDIR-$(TARGET))/,$(OBJDIR))
-SRCDIR-$(TARGET) := $(addprefix $(CURDIR-$(TARGET))/,$(SRCDIR))
+OBJDIR := $(addprefix $(CURDIR)/,$(OBJDIR))
+SRCDIR := $(addprefix $(CURDIR)/,$(SRCDIR))
 
 # C compiler flags
-CFLAGS-$(TARGET) := $(CFLAGS)
-CFLAGS-$(TARGET) += $(addprefix -I,$(INCLUDES))
-CFLAGS-$(TARGET) += $(GLOBAL_DEFINES) $(DEFINES)
+CFLAGS := $(CFLAGS)
+CFLAGS += $(addprefix -I,$(INCLUDES))
+CFLAGS += $(GLOBAL_DEFINES) $(DEFINES)
 
 # C++ compiler flags
-CXXFLAGS-$(TARGET) := $(CXXFLAGS)
-CXXFLAGS-$(TARGET) += $(addprefix -I,$(INCLUDES))
-CXXFLAGS-$(TARGET) += $(GLOBAL_DEFINES) $(DEFINES)
+CXXFLAGS := $(CXXFLAGS)
+CXXFLAGS += $(addprefix -I,$(INCLUDES))
+CXXFLAGS += $(GLOBAL_DEFINES) $(DEFINES)
 
 # Determinte objects to be created
-OBJECTS-$(TARGET) := $(ASOURCES:%.S=%.o)
-OBJECTS-$(TARGET) += $(CCSOURCES:%.c=%.o)
-OBJECTS-$(TARGET) += $(CXXSOURCES:%.cpp=%.o)
+OBJECTS := $(ASOURCES:%.S=%.o)
+OBJECTS += $(CCSOURCES:%.c=%.o)
+OBJECTS += $(CXXSOURCES:%.cpp=%.o)
 
 # define a name for linking against this lib
-BINARY-$(TARGET) := $(OBJDIR-$(TARGET))/$(TARGET).a
+BINARY-$(TARGET) := $(OBJDIR)/$(TARGET).a
+BINARY := $(OBJDIR)/$(TARGET).a
 
 # Main targets
-all: $(BINARY-$(TARGET))
-$(TARGET): $(BINARY-$(TARGET))
+all: $(BINARY)
+$(TARGET): $(BINARY)
 
-$(OBJDIR-$(TARGET))/$(TARGET).a: $(addprefix $(OBJDIR-$(TARGET))/, $(OBJECTS-$(TARGET)))
+$(OBJDIR)/$(TARGET).a: $(addprefix $(OBJDIR)/,$(OBJECTS))
 	$(call cmd_msg,AR,$(@))
 	$(Q)$(AR) rcs $@ $^
 
 # Cleaning
 clean: clean-$(TARGET)
-clean-$(TARGET): clean-% :
-	$(Q)$(RM) -rf $(OBJDIR-$*)
+clean-$(TARGET): OBJDIR:=$(OBJDIR)
+clean-$(TARGET):
+	$(Q)$(RM) -rf $(OBJDIR)
 
 # Header dependency generation
-$(OBJDIR-$(TARGET))/%.d: CFLAGS := $(CFLAGS-$(TARGET))
-$(OBJDIR-$(TARGET))/%.d: $(SRCDIR-$(TARGET))/%.c
+$(OBJDIR)/%.d: CFLAGS := $(CFLAGS)
+$(OBJDIR)/%.d: $(SRCDIR)/%.c
 #	$(call cmd_msg,DEPENDS,$@)
 	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CC) $(CFLAGS) -MM -MG -MP -MT '$(@:%.d=%.o)' $< > $@
 
-$(OBJDIR-$(TARGET))/%.d: CXXFLAGS := $(CXXFLAGS-$(TARGET))
+$(OBJDIR)/%.d: CXXFLAGS := $(CXXFLAGS)
 $(OBJDIR)/%.d: $(SRCDIR)/%.cpp
 #	$(call cmd_msg,DEPENDS,$@)
 	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CXX) $(CXXFLAGS) -MM -MG -MP -MT '$(@:%.d=%.o)' $< > $@
 
 # Compile c files
-$(OBJDIR-$(TARGET))/%.o: CFLAGS := $(CFLAGS-$(TARGET))
-$(OBJDIR-$(TARGET))/%.o: $(SRCDIR-$(TARGET))/%.c
+$(OBJDIR)/%.o: CFLAGS := $(CFLAGS)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(call cmd_msg,CC,$<)
 	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CC) $(CFLAGS) -c $< -o $@
 
 # Compile cpp files
-$(OBJDIR-$(TARGET))/%.o: CXXFLAGS := $(CXXFLAGS-$(TARGET))
-$(OBJDIR-$(TARGET))/%.o: $(SRCDIR-$(TARGET))/%.cpp
+$(OBJDIR)/%.o: CXXFLAGS := $(CXXFLAGS)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(call cmd_msg,CXX,$<)
 	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Assemble S files with GAS
-$(OBJDIR-$(TARGET))/%.o: ASFLAGS := $(ASFLAGS-$(TARGET))
-$(OBJDIR-$(TARGET))/%.o: $(SRCDIR-$(TARGET))/%.S
+$(OBJDIR)/%.o: ASFLAGS := $(ASFLAGS)
+$(OBJDIR)/%.o: $(SRCDIR)/%.S
 	$(call cmd_msg,AS,$<)
 	$(Q)$(MKDIR) -p $(dir $@)
 	$(Q)$(CC) -c $(ASFLAGS) -o $@ $<
@@ -76,7 +78,7 @@ $(OBJDIR-$(TARGET))/%.o: $(SRCDIR-$(TARGET))/%.S
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(MAKECMDGOALS),distclean)
 ifneq ($(MAKECMDGOALS),clean-$(TARGET))
--include $(addprefix $(OBJDIR-$(TARGET))/, $(OBJECTS-$(TARGET):%.o=%.d))
+-include $(addprefix $(OBJDIR)/, $(OBJECTS:%.o=%.d))
 endif
 endif
 endif
