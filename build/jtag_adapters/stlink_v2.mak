@@ -11,10 +11,11 @@ upload-fast-$(TARGET): $(OBJDIR)/$(TARGET).bin
 
 upload-gdb-$(TARGET): $(OBJDIR)/$(TARGET).elf
 	$(call cmd_msg,GDB LOAD,$<)
-	$(Q)st-util & $(GDB) -ex "tar ext :4242" -ex "load $<" < /dev/null
+	$(Q)st-util >/dev/null & $(GDB) -ex "tar ext :4242" -ex "load $<" < /dev/null
 
 debug-gdb-$(TARGET): $(OBJDIR)/$(TARGET).elf
-	st-util & $(GDB) -ex "tar ext :4242" $<
+	st-util >/dev/null & $(GDB) -ex "tar ext :4242" $<
+st-util & arm-none-eabi-gdb -ex "tar ext :4242" /home/tu500/u23/2013/U23_2013_examples/bare_metal/06_spi_dma/obj/06_spi_dma.elf
 
 
 .PHONY: upload-gdb-$(TARGET) upload-$(TARGET) debug-gdb-$(TARGET)
