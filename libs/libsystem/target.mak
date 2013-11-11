@@ -11,7 +11,6 @@ CCSOURCES = NewlibSyscalls.c \
 			Synth.c \
 			LED.c \
 			Accelerometer.c \
-			Spi.c \
 			Init.c
 
 # List C++ source files here.
