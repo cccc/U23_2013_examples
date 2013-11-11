@@ -36,7 +36,7 @@
 
 
 // Bypass used SPI2_IRQHandler
-void spi_overwrite_interrupt_handler((void* handler)(void))
+void spi_overwrite_interrupt_handler(void (*handler)(void));
 // Initialize SPI hardware
 uint8_t spi_initialize(void);
 // Return wheter the SPI is done completely

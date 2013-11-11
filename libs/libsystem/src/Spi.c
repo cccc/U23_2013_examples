@@ -14,14 +14,14 @@ static uint8_t* spi_receive_buffer = NULL;
 static uint16_t spi_data_buffersize = 0;
 static volatile uint16_t spi_data_rx_counter = 0;
 static volatile uint16_t spi_data_tx_counter = 0;
-static (void* spi_external_handler)(void);
+static void (*spi_external_handler)(void);
 
 
 // A function to allow bypassing of the here used SPI2_IRQHandler.
 // Call spi_overwrite_interrupt_hanlder(your_handler) and it will feel as if
 // your handler was the SPI2_IRQHandler.
 // To reset call with a value of 0.
-void spi_overwrite_interrupt_handler((void* handler)(void))
+void spi_overwrite_interrupt_handler(void (*handler)(void))
 {
   spi_external_handler = handler;
 }
