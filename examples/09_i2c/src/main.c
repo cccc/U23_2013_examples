@@ -1,6 +1,7 @@
 #include <System.h>
 #include <stm32f4xx.h>
 #include <stdio.h>
+#include <math.h>
 
 #define SLAVE_ADDRESS 0x1E
 
@@ -112,7 +113,9 @@ int main()
 		headings[2] = I2C_read_ack(I2C3) << 8;
 		headings[2] |= I2C_read_nack(I2C3);
 
-		iprintf("X: %d, Y: %d, Z: %d\r\n", headings[0], headings[2], headings[1]);
+		float headingDegrees = atan2((double)headings[2], (double)headings[0])* 180/M_PI + 180;
+
+		printf("Deg: %f, X: %d, Y: %d, Z: %d\r\n", headingDegrees, headings[0], headings[2], headings[1]);
 		Delay(10);
 	}
 }
