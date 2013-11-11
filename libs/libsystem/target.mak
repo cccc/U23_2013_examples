@@ -9,9 +9,9 @@ CCSOURCES = NewlibSyscalls.c \
 			Random.c \
 			Audio.c \
 			Synth.c \
+			Spi.c \
 			LED.c \
 			Accelerometer.c \
-			Spi.c \
 			Init.c
 
 # List C++ source files here.

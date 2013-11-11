@@ -27,9 +27,16 @@
  *      Call spi_send_buffer with your transmit and/or receive buffer and
  *      the data count.
  *  3) Wait until finished
+ *
+ * USAGE own SPI code:
+ *  1) Do everything as usual
+ *  2) Instead of implementing SPI2_IRQHandler, write a different function, and
+ *      set it to be called with spi_overwrite_interrupt_handler(your_handler)
  */
 
 
+// Bypass used SPI2_IRQHandler
+void spi_overwrite_interrupt_handler(void (*handler)(void));
 // Initialize SPI hardware
 uint8_t spi_initialize(void);
 // Return wheter the SPI is done completely
