@@ -56,7 +56,7 @@ int main()
 		.I2C_DutyCycle = I2C_DutyCycle_2,	//only relevant for fast mode
 		.I2C_OwnAddress1 = 0xEE,			//only relevant for slave mode
 		.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit,	//7-bit addresses, only relevant for slave mode
-		.I2C_Ack = I2C_Ack_Disable			//wether or not to acknowledge if we saw our own address on the bus, only relevant for slave mode
+		.I2C_Ack = I2C_Ack_Disable			//wether or not to acknowledge automatically
 	});
 
 	//Turn that thing on...
@@ -80,6 +80,15 @@ int main()
 	I2C_write(I2C3, 0x02); // set pointer to Mode
 	I2C_write(I2C3, 0x00); // enable continous measurement
 	I2C_stop(I2C3);
+
+	//Read Status register, just for the lulz
+	uint8_t status = 0;
+	I2C_start(I2C3, SLAVE_ADDRESS<<1, I2C_Direction_Transmitter);
+	I2C_write(I2C3, 0x09); // set pointer to Status register
+	I2C_restart(I2C3, SLAVE_ADDRESS<<1, I2C_Direction_Receiver);	//repeated start, now reading
+	status = I2C_read_nack(I2C3);	//read byte, nack and stop
+
+	printf("Status Register: 0x%x\r\n", status);
 
 	while(1)
 	{
