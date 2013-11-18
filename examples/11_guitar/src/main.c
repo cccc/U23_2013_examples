@@ -3,7 +3,7 @@
 
 #include "guitar.h"
 
-#define AudioFreq Gaming_AudioFreq_44k
+#define AudioFreq AudioFreq_44k
 
 static const int SPEED = 400;
 
