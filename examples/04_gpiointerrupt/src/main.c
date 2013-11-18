@@ -6,6 +6,9 @@ int main()
 	// Do some basic initialization tasks
 	InitializeSystem();
 
+	// Enable clock for the system configuration controller
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+
 	// Enable clock for GPIOD peripheral
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 

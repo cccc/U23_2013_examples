@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#define AudioFreq Gaming_AudioFreq_22k
+#define AudioFreq AudioFreq_22k
 
 static const int SPEED = 40;
 

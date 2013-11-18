@@ -1,5 +1,5 @@
 # Target file name.
-TARGET = 10_adc
+TARGET = 12_adc
 
 # List C source files here.
 CCSOURCES = main.c
