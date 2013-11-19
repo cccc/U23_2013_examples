@@ -40,10 +40,10 @@ int16_t SynthGetSample(SynthSong *song)
 		sample = Rect(note->freq, song->pos, song->samplingFrequency);
 		break;
 	case SynthSaw:
-		sample = Rect(note->freq, song->pos, song->samplingFrequency);
+		sample = Saw(note->freq, song->pos, song->samplingFrequency);
 		break;
 	case SynthTri:
-		sample = Rect(note->freq, song->pos, song->samplingFrequency);
+		sample = Tri(note->freq, song->pos, song->samplingFrequency);
 		break;
 	}
 
