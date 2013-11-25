@@ -32,7 +32,9 @@ CCSOURCES = misc.c \
 			stm32f4xx_gpio.c \
 			stm32f4xx_i2c.c \
 			stm32f4xx_rng.c \
-			stm32f4xx_syscfg.c
+			stm32f4xx_syscfg.c \
+			stm32_ub_ds18xx.c \
+			stm32_ub_onewire.c 
 
 # List C++ source files here.
 CXXSOURCES =
